@@ -1,13 +1,7 @@
 import React from "react";
 import Cell from "./Cell";
 
-const Grid = ({
-  grid,
-  setGridState,
-  placingStart,
-  setPlacingStart,
-  handleCellClick,
-}) => {
+const Grid = ({ grid, cellClick }) => {
   console.log("grid updated");
   return (
     <div className="flex flex-col grow mx-8 my-4 bg-gray-100 w-4/5">
@@ -18,10 +12,7 @@ const Grid = ({
               key={`${rowIndex}-${colIndex}`}
               cell={cell}
               grid={grid}
-              setGridState={setGridState}
-              placingStart={placingStart}
-              setPlacingStart={setPlacingStart}
-              handleCellClick={handleCellClick}
+              cellClick={cellClick}
             />
           ))}
         </div>

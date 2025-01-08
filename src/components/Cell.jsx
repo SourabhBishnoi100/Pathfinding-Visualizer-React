@@ -1,13 +1,6 @@
 import React from "react";
 
-const Cell = ({
-  cell,
-  grid,
-  setGridState,
-  placingStart,
-  setPlacingStart,
-  handleCellClick,
-}) => {
+const Cell = ({ cell, cellClick }) => {
   let backgroundColor = "white";
   if (cell.isStart) backgroundColor = "red";
   else if (cell.isEnd) backgroundColor = "green";
@@ -21,21 +14,7 @@ const Cell = ({
         backgroundColor,
       }}
       onClick={() => {
-        console.log("cell clicked", cell.row, cell.col);
-        handleCellClick(
-          cell.row,
-          cell.col,
-          grid,
-          setGridState,
-          placingStart,
-          setPlacingStart
-        );
-        console.log("Props passed to Cell:", {
-          cell,
-          grid,
-          placingStart,
-          handleCellClick,
-        });
+        cellClick(cell.row, cell.col);
       }}
     ></div>
   );

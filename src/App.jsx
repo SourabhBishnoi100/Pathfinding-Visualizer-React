@@ -13,6 +13,17 @@ const App = () => {
 
   console.log(placingStart);
 
+  const cellClick = (row, col) => {
+    handleCellClick(
+      row,
+      col,
+      grid,
+      setGridState,
+      placingStart,
+      setPlacingStart
+    );
+  };
+
   return (
     <div className="flex flex-col items-center w-full h-screen">
       {/* Control Bar */}
@@ -21,13 +32,7 @@ const App = () => {
       </div>
 
       {/* Grid Container */}
-      <Grid
-        grid={grid}
-        setGridState={setGridState}
-        placingStart={placingStart}
-        setPlacingStart={setPlacingStart}
-        handleCellClick={handleCellClick}
-      />
+      <Grid grid={grid} cellClick={cellClick} />
     </div>
   );
 };
