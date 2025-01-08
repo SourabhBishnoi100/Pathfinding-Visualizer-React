@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import initializeGrid from "./utils/intitalizeGrid";
+import { handleCellClick } from "./utils/handleCellClick";
 import Grid from "./components/Grid";
 
 const App = () => {
@@ -8,6 +9,9 @@ const App = () => {
   const columns = 50;
 
   const [grid, setGridState] = useState(initializeGrid(rows, columns));
+  const [placingStart, setPlacingStart] = useState(true);
+
+  console.log(placingStart);
 
   return (
     <div className="flex flex-col items-center w-full h-screen">
@@ -17,7 +21,13 @@ const App = () => {
       </div>
 
       {/* Grid Container */}
-      <Grid grid={grid} />
+      <Grid
+        grid={grid}
+        setGridState={setGridState}
+        placingStart={placingStart}
+        setPlacingStart={setPlacingStart}
+        handleCellClick={handleCellClick}
+      />
     </div>
   );
 };
