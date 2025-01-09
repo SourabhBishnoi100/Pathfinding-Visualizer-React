@@ -10,6 +10,8 @@ const App = () => {
 
   const [grid, setGridState] = useState(initializeGrid(rows, columns));
   const [placingStart, setPlacingStart] = useState(true);
+  const [placingEnd, setPlacingEnd] = useState(false);
+  const [placingObstacle, setPlacingObstacle] = useState(false);
 
   console.log(placingStart);
 
@@ -20,7 +22,11 @@ const App = () => {
       grid,
       setGridState,
       placingStart,
-      setPlacingStart
+      setPlacingStart,
+      placingEnd,
+      setPlacingEnd,
+      placingObstacle,
+      setPlacingObstacle
     );
   };
 
