@@ -25,8 +25,8 @@ export const handleCellClick = (
 
     console.log("grid modified", row, col, prevGrid[row][col]);
 
-    setPlacingStart(!placingStart);
-    setPlacingEnd(!placingEnd);
+    setPlacingStart(false);
+    setPlacingEnd(true);
   } else if (placingEnd && !prevGrid[row][col].isStart) {
     setGridState(() => {
       const newGrid = [...prevGrid];
@@ -35,6 +35,19 @@ export const handleCellClick = (
       newGrid[row] = newRow;
       return newGrid;
     });
-    setPlacingEnd(!placingEnd);
+    setPlacingEnd(false);
+    setPlacingObstacle(true);
+  } else if (
+    placingObstacle &&
+    !prevGrid[row][col].isStart &&
+    !prevGrid[row][col].isEnd
+  ) {
+    setGridState(() => {
+      const newGrid = [...prevGrid];
+      const newRow = [...newGrid[row]];
+      newRow[col] = { ...newRow[col], isObstacle: true };
+      newGrid[row] = newRow;
+      return newGrid;
+    });
   }
 };

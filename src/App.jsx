@@ -3,6 +3,7 @@ import { useState } from "react";
 import initializeGrid from "./utils/intitalizeGrid";
 import { handleCellClick } from "./utils/handleCellClick";
 import Grid from "./components/Grid";
+import { useDragState } from "./context/DragContext";
 
 const App = () => {
   const rows = 25;
@@ -12,6 +13,7 @@ const App = () => {
   const [placingStart, setPlacingStart] = useState(true);
   const [placingEnd, setPlacingEnd] = useState(false);
   const [placingObstacle, setPlacingObstacle] = useState(false);
+  //const { isDragging, setIsDragging } = useDragState();
 
   console.log(placingStart);
 

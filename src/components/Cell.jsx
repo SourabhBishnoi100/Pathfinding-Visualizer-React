@@ -1,6 +1,8 @@
 import React from "react";
+import { useDragState } from "../context/DragContext";
 
 const Cell = ({ cell, cellClick }) => {
+  const { isDragging, setIsDragging } = useDragState();
   let backgroundColor = "white";
   if (cell.isStart) backgroundColor = "red";
   else if (cell.isEnd) backgroundColor = "green";
@@ -15,6 +17,12 @@ const Cell = ({ cell, cellClick }) => {
       }}
       onClick={() => {
         cellClick(cell.row, cell.col);
+      }}
+      onMouseDown={() => {
+        setIsDragging(true);
+      }}
+      onMouseEnter={() => {
+        isDragging && cellClick(cell.row, cell.col);
       }}
     ></div>
   );
