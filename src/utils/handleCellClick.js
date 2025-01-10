@@ -37,10 +37,6 @@ export const handleCellClick = (
     !prevGrid[row][col].isEnd
   ) {
     setGridState(() => {
-      // prevGrid[row][col].isObsatcle = true;
-      // console.log(prevGrid[row][col].isObsatcle);
-      // return prevGrid;
-
       const newGrid = [...prevGrid];
       const newRow = [...newGrid[row]];
       newRow[col] = { ...newRow[col], isObstacle: true };

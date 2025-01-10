@@ -1,20 +1,22 @@
 import React from "react";
 import { useState } from "react";
-import initializeGrid from "./utils/intitalizeGrid";
+
 import { handleCellClick } from "./utils/handleCellClick";
 import Grid from "./components/Grid";
-import { useDragState } from "./context/DragContext";
 import ControlBar from "./components/ControlBar";
+import { useGridContext } from "./context/GridContext";
 
 const App = () => {
-  const rows = 25;
-  const columns = 50;
-
-  const [grid, setGridState] = useState(() => initializeGrid(rows, columns));
-  const [placingStart, setPlacingStart] = useState(true);
-  const [placingEnd, setPlacingEnd] = useState(false);
-  const [placingObstacle, setPlacingObstacle] = useState(false);
-  //const { isDragging, setIsDragging } = useDragState();
+  const {
+    grid,
+    setGridState,
+    placingStart,
+    setPlacingStart,
+    placingEnd,
+    setPlacingEnd,
+    placingObstacle,
+    setPlacingObstacle,
+  } = useGridContext();
 
   const cellClick = (row, col) => {
     handleCellClick(
