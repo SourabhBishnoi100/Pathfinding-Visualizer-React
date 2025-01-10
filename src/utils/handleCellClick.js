@@ -10,11 +10,7 @@ export const handleCellClick = (
   placingObstacle,
   setPlacingObstacle
 ) => {
-  console.log("handleCellClick triggered", row, col);
-
   if (placingStart) {
-    console.log("if statement triggered", row, col);
-
     setGridState(() => {
       const newGrid = [...prevGrid];
       const newRow = [...newGrid[row]];
@@ -22,8 +18,6 @@ export const handleCellClick = (
       newGrid[row] = newRow;
       return newGrid;
     });
-
-    console.log("grid modified", row, col, prevGrid[row][col]);
 
     setPlacingStart(false);
     setPlacingEnd(true);
@@ -43,6 +37,10 @@ export const handleCellClick = (
     !prevGrid[row][col].isEnd
   ) {
     setGridState(() => {
+      // prevGrid[row][col].isObsatcle = true;
+      // console.log(prevGrid[row][col].isObsatcle);
+      // return prevGrid;
+
       const newGrid = [...prevGrid];
       const newRow = [...newGrid[row]];
       newRow[col] = { ...newRow[col], isObstacle: true };

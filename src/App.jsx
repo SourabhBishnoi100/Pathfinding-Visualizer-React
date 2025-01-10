@@ -4,18 +4,17 @@ import initializeGrid from "./utils/intitalizeGrid";
 import { handleCellClick } from "./utils/handleCellClick";
 import Grid from "./components/Grid";
 import { useDragState } from "./context/DragContext";
+import ControlBar from "./components/ControlBar";
 
 const App = () => {
   const rows = 25;
   const columns = 50;
 
-  const [grid, setGridState] = useState(initializeGrid(rows, columns));
+  const [grid, setGridState] = useState(() => initializeGrid(rows, columns));
   const [placingStart, setPlacingStart] = useState(true);
   const [placingEnd, setPlacingEnd] = useState(false);
   const [placingObstacle, setPlacingObstacle] = useState(false);
   //const { isDragging, setIsDragging } = useDragState();
-
-  console.log(placingStart);
 
   const cellClick = (row, col) => {
     handleCellClick(
@@ -35,9 +34,7 @@ const App = () => {
   return (
     <div className="flex flex-col items-center w-full h-screen">
       {/* Control Bar */}
-      <div className="w-full p-4 mb-4 bg-gray-200 text-center">
-        <p>Control Bar</p>
-      </div>
+      <ControlBar />
 
       {/* Grid Container */}
       <Grid grid={grid} cellClick={cellClick} />

@@ -11,7 +11,7 @@ const Cell = ({ cell, cellClick }) => {
   return (
     <div
       className="text-sm border border-gray-400 grow flex items-center
-      justify-center hover:scale-125 hover:cursor-pointer hover:shadow-inner"
+      justify-center hover:scale-125 hover:cursor-pointer hover:shadow-inner select-none"
       style={{
         backgroundColor,
       }}
@@ -20,6 +20,7 @@ const Cell = ({ cell, cellClick }) => {
       }}
       onMouseDown={() => {
         setIsDragging(true);
+        cellClick(cell.row, cell.col);
       }}
       onMouseEnter={() => {
         isDragging && cellClick(cell.row, cell.col);
