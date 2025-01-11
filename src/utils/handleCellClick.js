@@ -8,7 +8,8 @@ export const handleCellClick = (
   placingEnd,
   setPlacingEnd,
   placingObstacle,
-  setPlacingObstacle
+  setPlacingObstacle,
+  setStartCell
 ) => {
   if (placingStart) {
     setGridState(() => {
@@ -16,6 +17,7 @@ export const handleCellClick = (
       const newRow = [...newGrid[row]];
       newRow[col] = { ...newRow[col], isStart: true };
       newGrid[row] = newRow;
+      setStartCell(newGrid[row][col]);
       return newGrid;
     });
 

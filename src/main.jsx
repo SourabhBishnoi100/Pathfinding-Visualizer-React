@@ -5,15 +5,18 @@ import App from "./App.jsx";
 import GradientBackground from "./utils/GradientBackground.jsx";
 import { DragContextProvider } from "./context/DragContext.jsx";
 import { GridContextProvider } from "./context/GridContext.jsx";
+import { GlobalContextProvider } from "./context/GlobalContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <GridContextProvider>
-      <GradientBackground>
-        <DragContextProvider>
-          <App />
-        </DragContextProvider>
-      </GradientBackground>
-    </GridContextProvider>
+    <GlobalContextProvider>
+      <GridContextProvider>
+        <GradientBackground>
+          <DragContextProvider>
+            <App />
+          </DragContextProvider>
+        </GradientBackground>
+      </GridContextProvider>
+    </GlobalContextProvider>
   </StrictMode>
 );

@@ -1,12 +1,18 @@
 import React from "react";
 import { useDragState } from "../context/DragContext";
+import { useGlobalContext } from "../context/GlobalContext";
 
 const Cell = ({ cell, cellClick }) => {
   const { isDragging, setIsDragging } = useDragState();
+  const { algorithmExecuting, setStartCell } = useGlobalContext();
   let backgroundColor = "white";
   if (cell.isStart) backgroundColor = "red";
   else if (cell.isEnd) backgroundColor = "green";
   else if (cell.isObstacle) backgroundColor = "black";
+  else if (!cell.isStart && !cell.isEnd && !cell.isVisited && cell.isQueued)
+    backgroundColor = "tomato";
+  else if (!cell.isStart && !cell.isEnd && cell.isVisited)
+    backgroundColor = "cyan";
 
   return (
     <div
@@ -16,7 +22,9 @@ const Cell = ({ cell, cellClick }) => {
         backgroundColor,
       }}
       onClick={() => {
-        cellClick(cell.row, cell.col);
+        if (!algorithmExecuting) {
+          cellClick(cell.row, cell.col, setStartCell);
+        }
       }}
       onMouseDown={() => {
         setIsDragging(true);

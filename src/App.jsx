@@ -5,6 +5,7 @@ import { handleCellClick } from "./utils/handleCellClick";
 import Grid from "./components/Grid";
 import ControlBar from "./components/ControlBar";
 import { useGridContext } from "./context/GridContext";
+import { useGlobalContext } from "./context/GlobalContext";
 
 const App = () => {
   const {
@@ -18,6 +19,8 @@ const App = () => {
     setPlacingObstacle,
   } = useGridContext();
 
+  const { setStartCell } = useGlobalContext();
+
   const cellClick = (row, col) => {
     handleCellClick(
       row,
@@ -29,7 +32,8 @@ const App = () => {
       placingEnd,
       setPlacingEnd,
       placingObstacle,
-      setPlacingObstacle
+      setPlacingObstacle,
+      setStartCell
     );
   };
 

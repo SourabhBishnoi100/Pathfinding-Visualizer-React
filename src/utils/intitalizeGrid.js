@@ -10,6 +10,11 @@ const initializeGrid = (rows, columns) => {
         isStart: false,
         isEnd: false,
         isObstacle: false,
+        isVisited: false,
+        distance: Infinity,
+        prevCell: null,
+        isQueued: false,
+        isPath: false,
       });
     }
     grid.push(current_row);

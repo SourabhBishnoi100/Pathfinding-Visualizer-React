@@ -1,4 +1,4 @@
-import React, { useState, createContext, useContext } from "react";
+import React, { useState, useEffect, createContext, useContext } from "react";
 import initializeGrid from "../utils/intitalizeGrid";
 
 const GridContext = createContext();
@@ -11,6 +11,10 @@ export const GridContextProvider = ({ children }) => {
   const [placingStart, setPlacingStart] = useState(true);
   const [placingEnd, setPlacingEnd] = useState(false);
   const [placingObstacle, setPlacingObstacle] = useState(false);
+
+  // useEffect(() => {
+  //   console.log("Grid Updated:", grid);
+  // }, [grid]);
 
   return (
     <GridContext.Provider
