@@ -14,6 +14,7 @@ const Cell = ({ cell, cellClick }) => {
   else if (!cell.isStart && !cell.isEnd && cell.isVisited)
     backgroundColor = "cyan";
 
+  if (!cell.isStart && !cell.isEnd && cell.isPath) backgroundColor = "blue";
   return (
     <div
       className="text-sm border border-gray-400 grow flex items-center
