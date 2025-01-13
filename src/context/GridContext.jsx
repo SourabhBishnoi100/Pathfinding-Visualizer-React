@@ -4,17 +4,13 @@ import initializeGrid from "../utils/intitalizeGrid";
 const GridContext = createContext();
 
 export const GridContextProvider = ({ children }) => {
-  const rows = 25;
-  const columns = 50;
+  const rows = 30;
+  const columns = 60;
 
   const [grid, setGridState] = useState(() => initializeGrid(rows, columns));
   const [placingStart, setPlacingStart] = useState(true);
   const [placingEnd, setPlacingEnd] = useState(false);
   const [placingObstacle, setPlacingObstacle] = useState(false);
-
-  // useEffect(() => {
-  //   console.log("Grid Updated:", grid);
-  // }, [grid]);
 
   return (
     <GridContext.Provider

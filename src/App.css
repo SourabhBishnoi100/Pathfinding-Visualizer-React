@@ -1,0 +1,88 @@
+/* Visited Cells - Soft Blue */
+.visited {
+  @apply transition-colors duration-300 ease-in-out;
+  background-color: #60a5fa;
+  animation: pulse 0.8s ease-in;
+  border-color: rgb(255, 255, 255);
+}
+@keyframes pulse {
+  0% {
+    transform: scale(0.3);
+    background-color: #60a5fa;
+    border-radius: 8px;
+  }
+  /* 50% {
+    transform: scale(0.7);
+    background-color: #bb3bf6;
+    border-radius: 3px;
+  } */
+  100% {
+    transform: scale(1);
+    background-color: #60a5fa;
+    border-radius: 0px;
+  }
+}
+
+/* Queued Cells - Amber */
+.queued {
+  @apply bg-amber-300;
+  animation: pulse2 0.3s ease-in-out;
+  border-color: black;
+}
+
+@keyframes pulse2 {
+  0% {
+    transform: scale(0.2);
+    background-color: #f8fbb9;
+    border-radius: 7px;
+  }
+  50% {
+    transform: scale(0.6);
+    background-color: #f6ed4c;
+    border-radius: 4px;
+  }
+  100% {
+    transform: scale(1);
+    background-color: #f3f71d;
+    border-radius: 0px;
+  }
+}
+
+.path {
+  @apply bg-purple-500 transition-colors duration-300 ease-in-out;
+  border-color: black;
+  /* scale: 105%; */
+  animation: pulse3 1s ease-in;
+}
+@keyframes pulse3 {
+  0% {
+    transform: scale(0.2);
+    background-color: #f40f0f;
+    border-radius: 7px;
+  }
+  50% {
+    transform: scale(0.6);
+    background-color: #82f64c;
+    border-radius: 4px;
+  }
+  100% {
+    transform: scale(1.05);
+    background-color: #c414dc;
+    border-radius: 0px;
+  }
+}
+
+.start {
+  @apply bg-green-500;
+  border-color: black;
+}
+
+.end {
+  @apply bg-red-500;
+  border-color: black;
+}
+
+.obstacle {
+  @apply bg-gray-800;
+  border-color: white;
+}

@@ -41,7 +41,10 @@ export const handleCellClick = (
     setGridState(() => {
       const newGrid = [...prevGrid];
       const newRow = [...newGrid[row]];
-      newRow[col] = { ...newRow[col], isObstacle: true };
+      newRow[col] = {
+        ...newRow[col],
+        isObstacle: !prevGrid[row][col].isObstacle,
+      };
       newGrid[row] = newRow;
       return newGrid;
     });

@@ -4,8 +4,9 @@ import {
   animatePath,
 } from "../utils/animateGrid.js";
 import { getNeighbours } from "../utils/getNeighbours.js";
+import { sleep } from "../utils/sleep.js";
 
-export const bfs = async (startCell, grid, setGridState) => {
+export const bfs = async (startCell, grid, setGridState, speed) => {
   const queue = [];
   const total_rows = grid.length;
   const total_col = grid[0].length;
@@ -19,7 +20,7 @@ export const bfs = async (startCell, grid, setGridState) => {
 
     if (currentCell.isEnd) {
       // If the end cell is reached, animate the path
-      await animatePath(currentCell, setGridState);
+      animatePath(currentCell, setGridState);
       return;
     }
 
@@ -33,14 +34,15 @@ export const bfs = async (startCell, grid, setGridState) => {
       ) {
         renderIsQueued(neighbour, setGridState);
         neighbour.isQueued = true;
-        console.log(neighbour.row, neighbour.col);
         queue.push(neighbour);
 
         neighbour.prevCell = currentCell;
       }
     }
 
-    await new Promise((resolve) => setTimeout(resolve, 0.01));
+    // await sleep(speed);
+
+    await new Promise((resolve) => setTimeout(resolve, speed));
 
     //Sets the state of current cell to isVisited = true and renders the change
   }

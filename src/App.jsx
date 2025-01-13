@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import "./App.css";
 
 import { handleCellClick } from "./utils/handleCellClick";
 import Grid from "./components/Grid";
@@ -19,22 +20,24 @@ const App = () => {
     setPlacingObstacle,
   } = useGridContext();
 
-  const { setStartCell } = useGlobalContext();
+  const { setStartCell, algorithmExecuting } = useGlobalContext();
 
   const cellClick = (row, col) => {
-    handleCellClick(
-      row,
-      col,
-      grid,
-      setGridState,
-      placingStart,
-      setPlacingStart,
-      placingEnd,
-      setPlacingEnd,
-      placingObstacle,
-      setPlacingObstacle,
-      setStartCell
-    );
+    if (!algorithmExecuting) {
+      handleCellClick(
+        row,
+        col,
+        grid,
+        setGridState,
+        placingStart,
+        setPlacingStart,
+        placingEnd,
+        setPlacingEnd,
+        placingObstacle,
+        setPlacingObstacle,
+        setStartCell
+      );
+    }
   };
 
   return (
