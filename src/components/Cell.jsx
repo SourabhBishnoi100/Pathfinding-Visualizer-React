@@ -4,7 +4,7 @@ import { useGlobalContext } from "../context/GlobalContext";
 
 const Cell = ({ cell, cellClick }) => {
   const { isDragging, setIsDragging } = useDragState();
-  const { algorithmExecuting, setStartCell } = useGlobalContext();
+  const { algorithmExecuting, setStartCell, setEndCell } = useGlobalContext();
   // let backgroundColor = "white";
   // if (cell.isStart) backgroundColor = "red";
   // else if (cell.isEnd) backgroundColor = "green";
@@ -38,7 +38,7 @@ const Cell = ({ cell, cellClick }) => {
       // }}
       onClick={() => {
         if (!algorithmExecuting) {
-          cellClick(cell.row, cell.col, setStartCell);
+          cellClick(cell.row, cell.col);
         }
       }}
       onMouseDown={() => {

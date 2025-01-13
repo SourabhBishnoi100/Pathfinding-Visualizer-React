@@ -20,7 +20,7 @@ const App = () => {
     setPlacingObstacle,
   } = useGridContext();
 
-  const { setStartCell, algorithmExecuting } = useGlobalContext();
+  const { setStartCell, algorithmExecuting, setEndCell } = useGlobalContext();
 
   const cellClick = (row, col) => {
     if (!algorithmExecuting) {
@@ -35,7 +35,8 @@ const App = () => {
         setPlacingEnd,
         placingObstacle,
         setPlacingObstacle,
-        setStartCell
+        setStartCell,
+        setEndCell
       );
     }
   };

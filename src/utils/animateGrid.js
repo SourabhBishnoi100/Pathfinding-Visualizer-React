@@ -50,3 +50,14 @@ export const animatePath = async (endCell, setGridState) => {
     await new Promise((resolve) => setTimeout(resolve, 1));
   }
 };
+
+export const renderIsNotVisited = (cell, setGridState) => {
+  setGridState((prevGrid) => {
+    const newGrid = [...prevGrid];
+    const newRow = [...newGrid[cell.row]];
+    newRow[cell.col] = { ...newRow[cell.col], isVisited: false };
+    newGrid[cell.row] = newRow;
+
+    return newGrid;
+  });
+};

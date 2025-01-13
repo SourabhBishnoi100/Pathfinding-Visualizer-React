@@ -6,7 +6,8 @@ const GlobalContext = createContext();
 export const GlobalContextProvider = ({ children }) => {
   const [algorithmExecuting, setExecuting] = useState(false);
   const [startCell, setStartCell] = useState(null);
-  const [algorithm, setAlgorithm] = useState("BFS");
+  const [endCell, setEndCell] = useState(null);
+  const [algorithm, setAlgorithm] = useState("astar");
   return (
     <GlobalContext.Provider
       value={{
@@ -16,6 +17,8 @@ export const GlobalContextProvider = ({ children }) => {
         setStartCell,
         algorithm,
         setAlgorithm,
+        endCell,
+        setEndCell,
       }}
     >
       {children}

@@ -9,7 +9,8 @@ export const handleCellClick = (
   setPlacingEnd,
   placingObstacle,
   setPlacingObstacle,
-  setStartCell
+  setStartCell,
+  setEndCell
 ) => {
   if (placingStart) {
     setGridState(() => {
@@ -29,6 +30,7 @@ export const handleCellClick = (
       const newRow = [...newGrid[row]];
       newRow[col] = { ...newRow[col], isEnd: true };
       newGrid[row] = newRow;
+      setEndCell(newGrid[row][col]);
       return newGrid;
     });
     setPlacingEnd(false);

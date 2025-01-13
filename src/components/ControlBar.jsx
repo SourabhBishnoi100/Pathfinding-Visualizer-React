@@ -12,8 +12,15 @@ const ControlBar = () => {
     setPlacingEnd,
     setPlacingObstacle,
   } = useGridContext();
-  const { startCell, algorithm, setExecuting, setAlgorithm } =
-    useGlobalContext();
+  const {
+    startCell,
+    setStartCell,
+    algorithm,
+    setExecuting,
+    setAlgorithm,
+    endCell,
+    setEndCell,
+  } = useGlobalContext();
   const [speed, setSpeed] = useState(1);
 
   return (
@@ -23,10 +30,10 @@ const ControlBar = () => {
         className="p-2 rounded bg-gray-700 text-white"
         onChange={(e) => setAlgorithm(e.target.value)}
       >
+        <option value="astar">A* Search</option>
         <option value="bfs">Breadth-First Search</option>
         <option value="dfs">Depth-First Search</option>
         <option value="dijkstra">Dijkstra's Algorithm</option>
-        <option value="astar">A* Search</option>
       </select>
 
       {/* Action Buttons */}
@@ -65,7 +72,14 @@ const ControlBar = () => {
           onClick={() => {
             if (startCell.isStart) {
               setExecuting(true);
-              runPathFinding(algorithm, startCell, grid, setGridState, speed);
+              runPathFinding(
+                algorithm,
+                startCell,
+                endCell,
+                grid,
+                setGridState,
+                speed
+              );
             }
           }}
         >
