@@ -3,6 +3,7 @@ import { useGridContext } from "../context/GridContext.jsx";
 import { useGlobalContext } from "../context/GlobalContext.jsx";
 import { runPathFinding } from "../algorithms/runPathfinding.js";
 import { resetGrid, clearObstacles, clearPath } from "../utils/reset.js";
+import { generateMaze } from "../mazeGeneration/generateMaze.js";
 
 const ControlBar = () => {
   const {
@@ -16,10 +17,13 @@ const ControlBar = () => {
     startCell,
     setStartCell,
     algorithm,
+    algorithmExecuting,
     setExecuting,
     setAlgorithm,
     endCell,
     setEndCell,
+    maze,
+    setMaze,
   } = useGlobalContext();
   const [speed, setSpeed] = useState(1);
 
@@ -56,7 +60,19 @@ const ControlBar = () => {
         >
           Place Obstacles
         </button>
-      </div> */}
+          </div> */}
+
+      <select
+        className="p-2 rounded bg-gray-700 text-white"
+        onChange={(e) => setMaze(e.target.value)}
+      >
+        <option value="randomMaze">Random Maze</option>
+        {/*<option value="bfs">Breadth-First Search</option> 
+        <option value="dijkstra">Dijkstra's Algorithm</option>
+        
+        */}
+        <option value="primsMaze">Prims Maze Generation</option>
+      </select>
 
       <select
         className="p-2 rounded bg-gray-700 text-white"
@@ -66,6 +82,18 @@ const ControlBar = () => {
         <option value="80">Medium</option>
         <option value="300">Slow</option>
       </select>
+
+      <div className="w-auto p-2  bg-red-500 text-center rounded-sm hover:bg-red-600">
+        <button
+          onClick={() => {
+            if (!algorithmExecuting) {
+              generateMaze(setGridState, maze);
+            }
+          }}
+        >
+          Generate Maze
+        </button>
+      </div>
 
       <div className="w-auto p-2  bg-red-500 text-center rounded-sm hover:bg-red-600">
         <button

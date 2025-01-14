@@ -3,9 +3,9 @@ import {
   renderIsVisited,
   animatePath,
   renderIsNotVisited,
-} from "../../utils/animateGrid";
-import { getNeighbours } from "../../utils/getNeighbours";
-import { PriorityQueue } from "./priorityQueue";
+} from "../../utils/animateGrid.js";
+import { getNeighbours } from "../../utils/getNeighbours.js";
+import { PriorityQueue } from "./priorityQueue.js";
 
 const hscore = (cell1, cell2) => {
   return Math.abs(cell1.row - cell2.row) + Math.abs(cell1.col - cell2.col);

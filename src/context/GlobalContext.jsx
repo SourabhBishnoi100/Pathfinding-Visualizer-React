@@ -8,6 +8,7 @@ export const GlobalContextProvider = ({ children }) => {
   const [startCell, setStartCell] = useState(null);
   const [endCell, setEndCell] = useState(null);
   const [algorithm, setAlgorithm] = useState("astar");
+  const [maze, setMaze] = useState("randomMaze");
   return (
     <GlobalContext.Provider
       value={{
@@ -19,6 +20,8 @@ export const GlobalContextProvider = ({ children }) => {
         setAlgorithm,
         endCell,
         setEndCell,
+        maze,
+        setMaze,
       }}
     >
       {children}
