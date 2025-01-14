@@ -17,7 +17,6 @@ const initializeGrid = (rows, columns) => {
         g: Infinity,
         h: 0,
         f: Infinity,
-        direction: "",
         inBetween: null,
       });
     }

@@ -4,8 +4,8 @@ import initializeGrid from "../utils/intitalizeGrid";
 const GridContext = createContext();
 
 export const GridContextProvider = ({ children }) => {
-  const rows = 30;
-  const columns = 60;
+  const rows = 31;
+  const columns = 61;
 
   const [grid, setGridState] = useState(() => initializeGrid(rows, columns));
   const [placingStart, setPlacingStart] = useState(true);

@@ -24,12 +24,22 @@ const ControlBar = () => {
     setEndCell,
     maze,
     setMaze,
+    generatingMaze,
+    setGeneratingMaze,
   } = useGlobalContext();
   const [speed, setSpeed] = useState(1);
 
   return (
     <div className="w-full flex items-center justify-between p-4 bg-gray-800 text-white shadow-lg">
       {/* Algorithm Selector */}
+      <select
+        className="p-2 rounded bg-gray-700 text-white"
+        onChange={(e) => setSpeed(e.target.value)}
+      >
+        <option value="1">Fast</option>
+        <option value="80">Medium</option>
+        <option value="300">Slow</option>
+      </select>
       <select
         className="p-2 rounded bg-gray-700 text-white"
         onChange={(e) => setAlgorithm(e.target.value)}
@@ -40,65 +50,10 @@ const ControlBar = () => {
         <option value="dijkstra">Dijkstra's Algorithm</option>
       </select>
 
-      {/* Action Buttons */}
-      {/* <div className="flex justify-around">
-        <button
-          // onClick={() => setPlacingStart(true)}
-          className="px-4 py-2 bg-green-500 hover:bg-green-600 rounded"
-        >
-          Set Start
-        </button>
-        <button
-          // onClick={() => setPlacingEnd(true)}
-          className="px-4 py-2 bg-red-500 hover:bg-red-600 rounded"
-        >
-          Set End
-        </button>
-        <button
-          // onClick={() => setPlacingObstacle(true)}
-          className="px-4 py-2 bg-yellow-500 hover:bg-yellow-600 rounded"
-        >
-          Place Obstacles
-        </button>
-          </div> */}
-
-      <select
-        className="p-2 rounded bg-gray-700 text-white"
-        onChange={(e) => setMaze(e.target.value)}
-      >
-        <option value="randomMaze">Random Maze</option>
-        {/*<option value="bfs">Breadth-First Search</option> 
-        <option value="dijkstra">Dijkstra's Algorithm</option>
-        
-        */}
-        <option value="primsMaze">Prims Maze Generation</option>
-      </select>
-
-      <select
-        className="p-2 rounded bg-gray-700 text-white"
-        onChange={(e) => setSpeed(e.target.value)}
-      >
-        <option value="1">Fast</option>
-        <option value="80">Medium</option>
-        <option value="300">Slow</option>
-      </select>
-
       <div className="w-auto p-2  bg-red-500 text-center rounded-sm hover:bg-red-600">
         <button
           onClick={() => {
-            if (!algorithmExecuting) {
-              generateMaze(setGridState, maze);
-            }
-          }}
-        >
-          Generate Maze
-        </button>
-      </div>
-
-      <div className="w-auto p-2  bg-red-500 text-center rounded-sm hover:bg-red-600">
-        <button
-          onClick={() => {
-            if (startCell.isStart) {
+            if (startCell.isStart && !generatingMaze) {
               setExecuting(true);
               runPathFinding(
                 algorithm,
@@ -112,6 +67,55 @@ const ControlBar = () => {
           }}
         >
           Run Algorithm
+        </button>
+      </div>
+      {/* Action Buttons */}
+      {/* <div className="flex justify-around">
+        <button
+          // onClick={() => setPlacingStart(true)}
+          className="px-4 py-2 bg-green-500 hover:bg-green-600 rounded"
+          >
+          Set Start
+          </button>
+          <button
+          // onClick={() => setPlacingEnd(true)}
+          className="px-4 py-2 bg-red-500 hover:bg-red-600 rounded"
+          >
+          Set End
+          </button>
+          <button
+          // onClick={() => setPlacingObstacle(true)}
+          className="px-4 py-2 bg-yellow-500 hover:bg-yellow-600 rounded"
+          >
+          Place Obstacles
+          </button>
+          </div> */}
+
+      <select
+        className="p-2 rounded bg-gray-700 text-white"
+        onChange={(e) => setMaze(e.target.value)}
+      >
+        <option value="randomMaze">Random Maze</option>
+        {/* 
+        <option value="dijkstra">Dijkstra's Algorithm</option>
+        
+        */}
+        <option value="recursiveBacktrackingMaze">
+          Recursive Backtracking Maze
+        </option>
+        <option value="primsMaze">Prims Maze Generation</option>
+      </select>
+
+      <div className="w-auto p-2  bg-red-500 text-center rounded-sm hover:bg-red-600">
+        <button
+          onClick={() => {
+            setGeneratingMaze(true);
+            if (!algorithmExecuting) {
+              generateMaze(grid, setGridState, setGeneratingMaze, maze);
+            }
+          }}
+        >
+          Generate Maze
         </button>
       </div>
 
