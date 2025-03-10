@@ -11,6 +11,7 @@ export const GridContextProvider = ({ children }) => {
   const [placingStart, setPlacingStart] = useState(true);
   const [placingEnd, setPlacingEnd] = useState(false);
   const [placingObstacle, setPlacingObstacle] = useState(false);
+  const [erasingObstacle, setErasingObstacle] = useState(false);
 
   return (
     <GridContext.Provider
@@ -23,6 +24,8 @@ export const GridContextProvider = ({ children }) => {
         setPlacingEnd,
         placingObstacle,
         setPlacingObstacle,
+        erasingObstacle,
+        setErasingObstacle,
       }}
     >
       {children}

@@ -61,3 +61,23 @@ export const renderIsNotVisited = (cell, setGridState) => {
     return newGrid;
   });
 };
+
+export const renderIsNotObstacle = (cell, setGridState) => {
+  setGridState((prevGrid) => {
+    const newGrid = [...prevGrid];
+    const newRow = [...newGrid[cell.row]];
+    newRow[cell.col] = { ...newRow[cell.col], isObstacle: false };
+    newGrid[cell.row] = newRow;
+    return newGrid;
+  });
+};
+
+export const renderIsObstacle = (cell, setGridState) => {
+  setGridState((prevGrid) => {
+    const newGrid = [...prevGrid];
+    const newRow = [...newGrid[cell.row]];
+    newRow[cell.col] = { ...newRow[cell.col], isObstacle: true };
+    newGrid[cell.row] = newRow;
+    return newGrid;
+  });
+};

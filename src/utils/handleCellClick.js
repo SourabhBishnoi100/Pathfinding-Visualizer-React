@@ -10,9 +10,10 @@ export const handleCellClick = (
   placingObstacle,
   setPlacingObstacle,
   setStartCell,
-  setEndCell
+  setEndCell,
+  erasingObstacle
 ) => {
-  if (placingStart) {
+  if (placingStart && !prevGrid[row][col].isObstacle) {
     setGridState(() => {
       const newGrid = [...prevGrid];
       const newRow = [...newGrid[row]];
@@ -24,7 +25,11 @@ export const handleCellClick = (
 
     setPlacingStart(false);
     setPlacingEnd(true);
-  } else if (placingEnd && !prevGrid[row][col].isStart) {
+  } else if (
+    placingEnd &&
+    !prevGrid[row][col].isStart &&
+    !prevGrid[row][col].isObstacle
+  ) {
     setGridState(() => {
       const newGrid = [...prevGrid];
       const newRow = [...newGrid[row]];
@@ -45,7 +50,7 @@ export const handleCellClick = (
       const newRow = [...newGrid[row]];
       newRow[col] = {
         ...newRow[col],
-        isObstacle: !prevGrid[row][col].isObstacle,
+        isObstacle: !erasingObstacle,
       };
       newGrid[row] = newRow;
       return newGrid;

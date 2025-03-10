@@ -18,6 +18,7 @@ const App = () => {
     setPlacingEnd,
     placingObstacle,
     setPlacingObstacle,
+    erasingObstacle,
   } = useGridContext();
 
   const { setStartCell, algorithmExecuting, setEndCell } = useGlobalContext();
@@ -36,7 +37,8 @@ const App = () => {
         placingObstacle,
         setPlacingObstacle,
         setStartCell,
-        setEndCell
+        setEndCell,
+        erasingObstacle
       );
     }
   };

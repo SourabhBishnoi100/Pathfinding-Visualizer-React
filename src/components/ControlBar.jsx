@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useGridContext } from "../context/GridContext.jsx";
 import { useGlobalContext } from "../context/GlobalContext.jsx";
 import { runPathFinding } from "../algorithms/runPathfinding.js";
 import { resetGrid, clearObstacles, clearPath } from "../utils/reset.js";
 import { generateMaze } from "../mazeGeneration/generateMaze.js";
+import ToggleObstacles from "./buttons/ToggleObstacles.jsx";
 
 const ControlBar = () => {
   const {
@@ -28,6 +29,8 @@ const ControlBar = () => {
     setGeneratingMaze,
   } = useGlobalContext();
   const [speed, setSpeed] = useState(1);
+
+  // useEffect(() => {}, [erasingObstacles]);
 
   return (
     <div className="w-full flex items-center justify-between p-4 bg-gray-800 text-white shadow-lg">
@@ -69,27 +72,6 @@ const ControlBar = () => {
           Run Algorithm
         </button>
       </div>
-      {/* Action Buttons */}
-      {/* <div className="flex justify-around">
-        <button
-          // onClick={() => setPlacingStart(true)}
-          className="px-4 py-2 bg-green-500 hover:bg-green-600 rounded"
-          >
-          Set Start
-          </button>
-          <button
-          // onClick={() => setPlacingEnd(true)}
-          className="px-4 py-2 bg-red-500 hover:bg-red-600 rounded"
-          >
-          Set End
-          </button>
-          <button
-          // onClick={() => setPlacingObstacle(true)}
-          className="px-4 py-2 bg-yellow-500 hover:bg-yellow-600 rounded"
-          >
-          Place Obstacles
-          </button>
-          </div> */}
 
       <select
         className="p-2 rounded bg-gray-700 text-white"
@@ -109,8 +91,8 @@ const ControlBar = () => {
       <div className="w-auto p-2  bg-red-500 text-center rounded-sm hover:bg-red-600">
         <button
           onClick={() => {
-            setGeneratingMaze(true);
-            if (!algorithmExecuting) {
+            if (!algorithmExecuting && !generatingMaze) {
+              setGeneratingMaze(true);
               generateMaze(grid, setGridState, setGeneratingMaze, maze);
             }
           }}
@@ -121,49 +103,34 @@ const ControlBar = () => {
 
       {/* Reset/Clear */}
       <div className="flex gap-2">
+        <ToggleObstacles />
         <button
+          className="px-4 py-2 bg-gray-500 hover:bg-gray-600 rounded"
           onClick={() => {
             resetGrid(setGridState, setPlacingStart, setExecuting);
           }}
-          className="px-4 py-2 bg-gray-500 hover:bg-gray-600 rounded"
         >
           Reset Grid
         </button>
         <button
+          className="px-4 py-2 bg-purple-500 hover:bg-purple-600 rounded"
           onClick={() => {
             clearObstacles(setGridState, setPlacingObstacle, setExecuting);
           }}
-          className="px-4 py-2 bg-purple-500 hover:bg-purple-600 rounded"
         >
           Clear Obstacles
         </button>
         <button
+          className="px-4 py-2 bg-purple-500 hover:bg-purple-600 rounded"
           onClick={() => {
             clearPath(setGridState, setExecuting);
           }}
-          className="px-4 py-2 bg-purple-500 hover:bg-purple-600 rounded"
         >
           Clear Path
         </button>
       </div>
     </div>
   );
-
-  //   return (
-  //     <div className="w-full p-4 mb-4 bg-gray-200 text-center">
-  //       <p>Control Bar</p>
-  //       <button
-  //         onClick={() => {
-  //           if (startCell.isStart) {
-  //             setExecuting(true);
-  //             runPathFinding(algorithm, startCell, grid, setGridState, speed);
-  //           }
-  //         }}
-  //       >
-  //         Run Algorithm
-  //       </button>
-  //     </div>
-  // );
 };
 
 export default ControlBar;
